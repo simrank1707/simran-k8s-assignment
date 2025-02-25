@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: getting-started-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: ebc-sc
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: getting-started-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  storageClassName: ebs-sc
+  resources:
+    requests:
+      storage: 4Gi

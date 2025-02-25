@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: getting-started
+  labels:
+    app: getting-started
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: getting-started
+  template:
+    metadata:
+      name: getting-started
+      labels:
+        app: getting-started
+    spec:
+      containers:
+        - name: getting-started
+          image: 851725308071.dkr.ecr.us-east-1.amazonaws.com/getting-started:latest
+          imagePullPolicy: IfNotPresent
+          volumeMounts:
+            - name: app-storage
+              mountPath: /etc/todos  # Attach PVC here
+      volumes:
+        - name: app-storage
+          persistentVolumeClaim:
+            claimName: getting-started-pvc  # PVC Name
+      restartPolicy: Always
+
